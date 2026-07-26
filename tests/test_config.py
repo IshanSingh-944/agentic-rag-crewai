@@ -14,8 +14,12 @@ def test_top_k_is_positive():
     assert config.TOP_K > 0
 
 
-def test_ollama_model_name_set():
-    assert config.OLLAMA_MODEL == "gemma:7b"
+def test_openrouter_model_name_set():
+    assert config.OPENROUTER_MODEL == "openai/gpt-4o-mini"
+
+
+def test_openrouter_base_url_set():
+    assert config.OPENROUTER_BASE_URL == "https://openrouter.ai/api/v1"
 
 
 def test_paths_are_absolute():
