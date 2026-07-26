@@ -1,4 +1,4 @@
-# Agentic RAG (CrewAI + Ollama gemma:7b)
+# Agentic RAG (CrewAI + OpenRouter)
 
 A retrieval-augmented generation pipeline built as a **multi-agent crew**
 rather than a single retrieve-then-generate chain. Three agents each own
@@ -37,16 +37,16 @@ an oversight. See inline comments in `src/agents.py` for the reasoning.
 ## Stack
 
 - **CrewAI** - multi-agent orchestration
-- **Ollama (gemma:7b)** - local LLM inference, no API costs/keys
+- **OpenRouter** - hosted LLM inference via API key
 - **FAISS** - vector store
 - **sentence-transformers (all-MiniLM-L6-v2)** - 384-dim embeddings
 - **LangChain** - document loaders + text splitting utilities
 
 ## Setup
 
-1. Install and start Ollama, and pull the model:
-   ```
-   ollama pull gemma:7b
+1. Set your OpenRouter API key:
+   ```bash
+   export OPENROUTER_API_KEY="your_api_key_here"
    ```
 
 2. Install Python dependencies:
