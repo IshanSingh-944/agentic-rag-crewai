@@ -6,23 +6,24 @@ Three agents, each with a narrow responsibility:
   2. Grader Agent     - filters out irrelevant/noisy chunks (the "agentic" check)
   3. Answer Agent     - synthesizes the final answer from graded context
 
-All agents share the same local Ollama gemma:7b model.
+All agents share the same hosted OpenRouter model.
 """
 
 from crewai import Agent, LLM
 
-from src.config import OLLAMA_MODEL, OLLAMA_BASE_URL
+from src.config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, OPENROUTER_MODEL
 from src.tools import DocumentRetrieverTool
 
 
 def get_llm() -> LLM:
     """
     CrewAI's LLM class routes through litellm, which expects the
-    'ollama/<model>' provider prefix to talk to a local Ollama server.
+    'openrouter/<model>' provider prefix for the hosted OpenRouter API.
     """
     return LLM(
-        model=f"ollama/{OLLAMA_MODEL}",
-        base_url=OLLAMA_BASE_URL,
+        model=f"openrouter/{OPENROUTER_MODEL}",
+        base_url=OPENROUTER_BASE_URL,
+        api_key=OPENROUTER_API_KEY,
         temperature=0.2,  # low temp: we want grounded, factual answers, not creativity
     )
 
